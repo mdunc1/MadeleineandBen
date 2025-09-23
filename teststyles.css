@@ -1,0 +1,227 @@
+:root{
+  --accent: #cb5a5e;
+  --bg: #323641;
+  --greencyan: #4ecdc4;
+  --mutedgreen: #88b04b;
+  --dustyrose: #d8a7b1;
+  --vividred: #e63946;
+}
+
+/* Header + nav basics so items align and RSVP sits on the right side */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* make all nav anchors consistent */
+.main-nav a {
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ========== RSVP envelope (inline) ========== */
+/* the clickable nav item */
+.rsvp-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;   /* match other nav items */
+  height: 100%;
+}
+
+/* reserved icon box so it takes up space in flow */
+.rsvp-envelope {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;    /* change to larger/smaller to give more/less space */
+  height: 36px;
+  overflow: visible; /* we allow small overflow for animation */
+}
+
+/* LETTER container — NOT absolute; keeps it in flow */
+.letter-image {
+  display: block;
+  position: relative;    /* internal children can be absolute */
+  width: 60px;           /* design size (we'll scale inside nav) */
+  height: 40px;
+  transform-origin: center;
+  margin: 0;
+  pointer-events: none;  /* allow anchor to receive clicks */
+}
+
+/* scale down ONLY for nav rendering */
+.rsvp-link .letter-image {
+  transform: scale(0.45);  /* tweak to match nav text height */
+  transform-origin: center;
+  pointer-events: none;
+}
+
+/* Animated-mail is positioned relative inside letter-image */
+.animated-mail {
+  position: relative;
+  width: 60px;
+  height: 40px;
+  display: block;
+  transition: transform .25s ease;
+}
+
+/* Shapes inside the envelope (absolute relative to .animated-mail) */
+.animated-mail .back-fold {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 40px;
+  background: var(--accent);
+  z-index: 0;
+  border-radius: 2px;
+}
+
+.animated-mail .letter {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  width: 48px;
+  height: 28px;
+  background: #ffffff;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06) inset;
+}
+
+/* small decorative stripes on letter */
+.animated-mail .letter .letter-border {
+  display: block;
+  height: 6px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--dustyrose),
+    var(--vividred) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+/* title/context lines */
+.animated-mail .letter .letter-title {
+  display: block;
+  margin: 6px 6px 0 6px;
+  height: 6px;
+  width: 40%;
+  background: var(--dustyrose);
+}
+
+.animated-mail .letter .letter-context {
+  display: block;
+  margin: 6px 6px 0 6px;
+  height: 6px;
+  width: 26%;
+  background: var(--dustyrose);
+}
+
+/* small heart-ish stamp on top-right of the letter */
+.animated-mail .letter .letter-stamp {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  transform: rotate(-45deg);
+  z-index: 2;
+  border-radius: 1px;
+}
+
+/* create two lobes for the heart */
+.animated-mail .letter .letter-stamp::before,
+.animated-mail .letter .letter-stamp::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  top: -6px;
+}
+
+.animated-mail .letter .letter-stamp::before { left: -6px; }
+.animated-mail .letter .letter-stamp::after  { left: 0; top: 0; }
+
+/* top flap (triangle) */
+.animated-mail .top-fold {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 20px solid var(--mutedgreen);
+  transform-origin: 50% 0%;
+  transition: transform .28s ease;
+  z-index: 2;
+}
+
+/* left fold small triangle */
+.animated-mail .left-fold {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 0 20px 30px;
+  border-color: transparent transparent transparent var(--bg);
+  z-index: 2;
+}
+
+/* subtle shadow under the letter */
+.shadow {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 46px;
+  height: 8px;
+  transform: translateX(-50%);
+  background: radial-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0));
+  border-radius: 50%;
+  z-index: 0;
+  transition: width .25s ease, opacity .25s ease;
+  opacity: .9;
+}
+
+/* small hover/attention animation */
+.rsvp-link:hover .animated-mail {
+  transform: translateY(-4px);
+}
+
+/* flip the top flap a little on hover to mimic opening */
+.rsvp-link:hover .top-fold {
+  transform: rotateX(180deg);
+}
+
+/* if you want the envelope also available large/centered elsewhere,
+   you can apply this class to a standalone instance:
+   .letter-large .letter-image { transform: none; width:200px; height:130px; }
+*/
