@@ -67,7 +67,8 @@ header h1 { margin:0;
   }
 
   .highlight {
-    font-weight: bold;
+    font-weight: bolder;
+    font-size: 1.2rem;
     color: var(--vividred);
   }
 
