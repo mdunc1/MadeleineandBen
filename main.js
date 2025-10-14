@@ -10,14 +10,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Mobile menu toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('nav');
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.main-nav');
 
-if (menuToggle && nav) {
-  menuToggle.addEventListener('click', () => {
-    nav.classList.toggle('show');
-  });
-}
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+      console.log('Menu toggled'); // debug
+    });
+  } else {
+    console.warn('Menu toggle or nav not found');
+  }
+});
+
+
+
 
 // ----------- COUNTDOWN -----------
 const countdownContainer = document.querySelector('#countdown');

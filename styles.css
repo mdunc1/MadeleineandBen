@@ -98,7 +98,7 @@ header h1 { margin:0;
     font-style: normal;
     display: inline-flex;
     color: white;
-    margin-left: 25px; /* remove default h1 margin */
+    /* margin-left: 25px;  */
   }
 
   .site-name a{
@@ -132,21 +132,7 @@ header h1 { margin:0;
   padding: 12px 10px;
   gap: 12px;
 }
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: white;
-}
 
-  .main-nav a {
-  text-decoration: none;
-  color: inherit;
-  padding: 6px 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
 
 
 .photo img{
@@ -242,9 +228,9 @@ nav {
   align-items: center;   /* THIS vertically centers nav children */
   gap:0.5rem;
 }
-nav a
-{ margin-left:0.5rem;
-  margin-right: 0.5rem;
+nav a{
+/*  margin-left:0.5rem;
+  margin-right: 0.5rem; */
   text-decoration:none;
   color:var(--neutral);
   font-size: 1.2rem;
@@ -254,8 +240,36 @@ nav a
 nav a:hover { 
   color: var(--mutedgreen);
 
-
   }
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap:0.9rem;
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+  .main-nav a {
+    /* margin-left:0.5rem; */
+    /* margin-right: 0.5rem; */
+    text-decoration:none;
+    color:var(--neutral);
+    font-size: 1.2rem;
+    font-weight:500;
+    text-wrap-mode: nowrap;
+  }
+  /* text-decoration: none;
+  color: inherit;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+} */
 
 /* Hide menu toggle on desktop */
 .menu-toggle {
@@ -263,16 +277,17 @@ nav a:hover {
   background: none;
   color:white;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 
 /* Mobile styles */
-@media (max-width: 1054px) {
+@media (max-width: 1120px) {
   nav {
     display: none;
     flex-direction: column;
     background: var(--bg);
+    /* background-color: pink; */
     position: absolute;
     top: 60px; /* height of header */
     right: 0;
@@ -282,6 +297,24 @@ nav a:hover {
 
   nav.show {
     display: flex;
+    /* background-color: rebeccapurple; */
+  }
+  
+  .main-nav {
+    display: none;
+    flex-direction: column;
+    /* background: var(--bg); */
+    /* background-color: pink; */
+    position: absolute;
+    top: 60px; /* height of header */
+    right: 0;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .main-nav.show {
+    display: flex;
+    /* background-color: rebeccapurple; */
   }
 
   .menu-toggle {
@@ -299,7 +332,7 @@ nav a:hover {
 
   header {
     position: relative;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
   .header-left{
     position: relative;
@@ -312,13 +345,14 @@ nav a:hover {
 
   .hero-text{
     position: relative;
-    font-size: smaller;
+    font-size: 80%;
     display: inline;
   }
   .hero-text h1{
-    font-size: 20vw;
+    font-size: 80%;
   }
 }
+
 
 columns {
   padding: auto;
@@ -358,12 +392,15 @@ footer {
   .button:hover { background:#8c5e48;
     }
 
+    .tight-spacing {
+            word-spacing: -3px; /* Adjust as needed */
+        }
 /* -----------------------------------------HERO IMAGE------------------------------------------ */
 
 .hero-background {
   width: auto;
   /* height: 60vh; */
-  height: 70vh;
+  height: 60vh;
   background-image: url('Graphics/blackandwhite.jpg');
   background-size: cover;
   background-position: center;
@@ -379,7 +416,7 @@ footer {
 
 .hero-background-dundas {
   width: auto;
-  height: 70vh;
+  height: 60vh;
   background-image: url('Graphics/dundas-banner.jpg');
   background-size: cover;
   background-position: center;
@@ -403,6 +440,7 @@ footer {
 }
 .hero-text h1 {
   color: white;
+  line-height: 150%;
   /* font-family: 'SugarAndSpice'; */
   font-family: "above-the-beyond", sans-serif;
   font-weight: 400;
@@ -410,6 +448,7 @@ footer {
   font-size:5rem;
 
   }
+
 
 .hero-text h2 {
   font-size:3rem;
@@ -420,6 +459,32 @@ footer {
 
   }
 
+@media (max-width: 1000px){
+  .hero-text h1{
+    font-size: 4rem;
+  }
+
+  .hero-text h2{
+    font-size: 2.5rem;
+  }
+
+  .hero-text h3{
+    font-size: 1.9rem;
+  }
+}
+@media (max-width: 800px){
+  .hero-text h1{
+    font-size: 2.5rem;
+  }
+
+  .hero-text h2{
+    font-size: 2rem;
+  }
+
+  .hero-text h3{
+    font-size: 1.5rem;
+  }
+}
 
 
   /* --------------------------------------------COUNTDOWN----------------------------------------------- */
@@ -1178,5 +1243,15 @@ footer {
   text-align: center;
   margin: 2rem;
   aspect-ratio: 16 / 9;
+  /* min-height: 100%; */
+}
+
+.centre-frame-new {
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
   /* min-height: 100%; */
 }
