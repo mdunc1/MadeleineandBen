@@ -282,6 +282,7 @@ nav a:hover {
 }
 
 /* Mobile styles */
+
 @media (max-width: 1120px) {
   nav {
     display: none;
@@ -322,7 +323,7 @@ nav a:hover {
   }
   .site-name{
     position: relative;
-    /* font-size: 5vw; */
+    /* font-size: 6vw; */
     margin-left: 0;
   }
   .custom-amp {
@@ -350,6 +351,18 @@ nav a:hover {
   }
   .hero-text h1{
     font-size: 80%;
+  }
+}
+
+@media (max-width: 575px) {
+  .site-name{
+    font-size: 5vw;
+    margin-left: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .custom-amp{
+    font-size: 8vw;
   }
 }
 
@@ -556,6 +569,8 @@ footer {
   @media (max-width: 600px) {
     .countdown {
       gap: 10px;
+      display: inline-grid
+
     }
     .countdown .time-box {
       padding: 10px;
