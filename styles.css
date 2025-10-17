@@ -69,7 +69,7 @@ header h1 { margin:0;
   .highlight {
     font-weight: bolder;
     font-size: 1.2rem;
-    color: var(--vividred);
+    color: var(--turquoisegrey);
   }
 
   .note {
@@ -176,7 +176,7 @@ header h1 { margin:0;
   content: '';
   align-content: center;
   position: absolute;
-  width: 80%;
+  width: 98%;
   border-radius: 5px;
   transform: translateX(-50%) scaleX(0);
   height: 3px;
