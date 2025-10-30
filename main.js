@@ -35,7 +35,7 @@ if (countdownContainer) {
   const minutesEl = document.querySelector('#minutes');
   const secondsEl = document.querySelector('#seconds');
 
-  const weddingDate = new Date('2026-04-18T15:00:00'); // update your date
+  const weddingDate = new Date('2026-04-08T00:00:00');
 
   function updateCountdown() {
     const now = new Date();
