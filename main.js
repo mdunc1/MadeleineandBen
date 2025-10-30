@@ -59,6 +59,49 @@ if (countdownContainer) {
 }
 
 // -----------------------------Carousel-----------------------------------//
+// document.querySelectorAll('.carousel').forEach(carousel => {
+//   const track = carousel.querySelector('.carousel-track');
+//   const slides = Array.from(track.children);
+//   const nextButton = carousel.querySelector('.carousel-button.next');
+//   const prevButton = carousel.querySelector('.carousel-button.prev');
+//   let currentIndex = 0;
+
+//   function updateCarousel() {
+//     const slideWidth = slides[0].getBoundingClientRect().width + 10; // include gap
+//     track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+//   }
+
+//   // Buttons
+//   if (prevButton) {
+//     prevButton.addEventListener('click', () => {
+//       currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+//       updateCarousel();
+//     });
+//   }
+
+//   if (nextButton) {
+//     nextButton.addEventListener('click', () => {
+//       currentIndex = (currentIndex + 1) % slides.length;
+//       updateCarousel();
+//     });
+//   }
+
+//   // Mobile swipe support
+//   let startX = 0;
+//   track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+//   track.addEventListener('touchend', e => {
+//     let endX = e.changedTouches[0].clientX;
+//     if (endX < startX - 50) {
+//       currentIndex = (currentIndex + 1) % slides.length;
+//     } else if (endX > startX + 50) {
+//       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+//     }
+//     updateCarousel();
+//   });
+
+//   updateCarousel();
+// });
+
 document.querySelectorAll('.carousel').forEach(carousel => {
   const track = carousel.querySelector('.carousel-track');
   const slides = Array.from(track.children);
@@ -68,34 +111,55 @@ document.querySelectorAll('.carousel').forEach(carousel => {
 
   function updateCarousel() {
     const slideWidth = slides[0].getBoundingClientRect().width + 10; // include gap
+    track.style.transition = 'transform 0.4s ease';
     track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
   }
 
-  // Buttons
-  if (prevButton) {
-    prevButton.addEventListener('click', () => {
-      currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
-      updateCarousel();
-    });
-  }
+  // Button navigation
+  nextButton?.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  });
 
-  if (nextButton) {
-    nextButton.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateCarousel();
-    });
-  }
+  prevButton?.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
 
-  // Mobile swipe support
+  // --- Mobile swipe support ---
   let startX = 0;
-  track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  let currentX = 0;
+  let isDragging = false;
+
+  track.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    track.style.transition = 'none'; // disable smooth transition during drag
+  });
+
+  track.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    const dx = currentX - startX;
+    const slideWidth = slides[0].getBoundingClientRect().width + 10;
+    track.style.transform = `translateX(calc(-${currentIndex * slideWidth}px + ${dx}px))`;
+  });
+
   track.addEventListener('touchend', e => {
-    let endX = e.changedTouches[0].clientX;
-    if (endX < startX - 50) {
+    if (!isDragging) return;
+    isDragging = false;
+    const endX = e.changedTouches[0].clientX;
+    const dx = endX - startX;
+    const threshold = 50; // minimum swipe distance
+
+    if (dx < -threshold) {
+      // Swipe left → next
       currentIndex = (currentIndex + 1) % slides.length;
-    } else if (endX > startX + 50) {
+    } else if (dx > threshold) {
+      // Swipe right → prev
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
     }
+
     updateCarousel();
   });
 
