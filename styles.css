@@ -589,7 +589,7 @@ footer {
   position: relative;
   max-width: 100%;
   overflow: hidden;
-  border-radius:8px;
+  /* border-radius:8px; */
   margin: 50px auto;
 }
 
@@ -1258,6 +1258,245 @@ footer {
   text-align: center;
   margin: 2rem;
   aspect-ratio: 16 / 9;
+  /* min-height: 100%; */
+}
+
+.centre-frame-new {
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* min-height: 100%; */
+}
+
+
+/* ---------------letter-c---------------------------- */
+
+
+
+ /* letter-c container (default version) */
+.letter-c-image {
+  position: absolute;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+/* Envelope wrapper */
+.animated-mail-c {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  width: 200px;
+  transition: .4s;
+}
+
+/* Main envelope triangle (body) */
+.animated-mail-c .letter-cbody {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 100px 200px;
+  border-color: transparent transparent var(--greencyan) transparent;
+  z-index: 2;
+}
+
+
+/* Envelope top flap */
+.animated-mail-c .top-fold {
+  position: absolute;
+  top: 20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 100px 0 100px;
+  transform-origin: 50% 0%;
+  transition: transform .4s .4s, z-index .2s .4s;
+  border-color: var(--mutedgreen) transparent transparent transparent;
+  z-index: 2;
+}
+
+/* Envelope back */
+.animated-mail-c .back-fold {
+  position: absolute;
+  bottom: 0;
+  width: 200px;
+  height: 100px;
+  background: var(--accent);
+  z-index: 0;
+}
+
+/* Left fold */
+.animated-mail-c .left-fold {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 50px 0 50px 100px;
+  border-color: transparent transparent transparent var(--bg);
+  z-index: 2;
+}
+
+/* Inner letter-c (the white part) */
+.animated-mail-c .letter-c {
+  left: 20px;
+  bottom: 0px;
+  position: absolute;
+  display: inline-block;
+  width: 160px;
+  height: 60px;
+  background: var(--neutral);
+  z-index: 1;
+  overflow: hidden;
+  transition: .4s .2s;
+}
+
+/* letter-c decorations */
+.animated-mail-c .letter-c .letter-c-border {
+  height: 10px;
+  width: 100%;
+  display: block;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--dustyrose),
+    var(--vividred) 8px,
+    transparent 8px,
+    transparent 18px
+  );
+}
+
+.animated-mail-c .letter-c .letter-c-title {
+  margin-top: 10px;
+  margin-left: 5px;
+  display: block;
+  height: 10px;
+  width: 40%;
+  background: var(--dustyrose);
+}
+
+.animated-mail-c .letter-c .letter-c-context {
+  margin-top: 10px;
+  margin-left: 5px;
+  height: 10px;
+  width: 20%;
+  display: block;
+  background: var(--dustyrose);
+}
+
+/* Heart-shaped stamp */
+.animated-mail-c .letter-c .letter-c-stamp {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  transform: rotate(-45deg);
+  display: inline-block;
+  margin-top: 20px;
+  margin-left: 100px;
+}
+
+.animated-mail-c .letter-c .letter-c-stamp::before,
+.animated-mail-c .letter-c .letter-c-stamp::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: var(--accent);
+  border-radius: 50%;
+  top: -15px;
+}
+
+.animated-mail-c .letter-c .letter-c-stamp::before {
+  left: 0;
+}
+
+.animated-mail-c .letter-c .letter-c-stamp::after {
+  left: 15px;
+  top: 0px;
+}
+
+
+/* Hover animation */
+.letter-c-image:hover .animated-mail-c {
+  transform: translateY(50px);
+}
+
+.letter-c-image:hover .animated-mail-c .top-fold {
+  transition: transform .4s, z-index .2s;
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.letter-c-image:hover .animated-mail-c .letter-c {
+  height: 180px;
+}
+
+
+/* Envelope wrapper inside navbar */
+.rsvp-c-envelope {
+  /* NEEDED */
+  display: inline-flex;
+  position: relative;
+  align-items: stretch;
+  padding-top: 95px;
+  /* justify-content: center; */
+  width: 200px;   /* controls space reserved */
+  height: 180px;
+  overflow: visible;
+}
+
+/* Scale the envelope down to fit */
+.rsvp-c-envelope .letter-c-image {
+  transform: scale(1);
+  display: flex;
+  /* transform-origin: top; */
+
+}
+
+.rsvp-c-text {
+  position: relative;
+   top: 25%;    /*   center vertically */
+   left: 27.5%;     /* center horizontally */
+  /* transform: translate(-35%);  */
+  font-size: 2.5rem; /* adjust to taste */
+  font-weight: bold;
+  color: white;   /* ensure it’s readable on the envelope */
+  pointer-events: none; /*so clicks still go through to the link*/
+  z-index: 10;
+}
+
+.shadow-c {
+  position: absolute;
+  top: 120px;
+  left: 100px;
+  width: 400px;
+  height: 30px;
+  transition: 0.4s;
+  transform: translateX(-50%);
+  -webkit-transition: 0.4s;
+  -webkit-transform: translateX(-50%);
+  -moz-transition: 0.4s;
+  -moz-transform: translateX(-50%);
+  border-radius: 100%;
+  background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+
+}
+
+.letter-c-image:hover .shadow-c {
+  width: 250px;
+}
+
+.centre-frame-c {
+  display: block;
+  text-align: center;
+  margin: 2rem;
+  aspect-ratio: 3.5;
   /* min-height: 100%; */
 }
 
