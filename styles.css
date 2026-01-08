@@ -1509,3 +1509,64 @@ footer {
   overflow: hidden;
   /* min-height: 100%; */
 }
+
+
+
+.honeymoon {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.honeymoon-button {
+  display: inline-block;
+  margin: 1.5rem 0;
+  padding: 0.9rem 1.8rem;
+  background-color: #2f2f2f;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.honeymoon-button:hover {
+  opacity: 0.9;
+}
+
+.small-note {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+
+.honeymoon {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+.card {
+  display: block;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+
+
+
