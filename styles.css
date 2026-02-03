@@ -72,6 +72,12 @@ header h1 { margin:0;
     color: var(--turquoisegrey);
   }
 
+  .attention {
+    font-weight: 1000;
+    font-size: 1rem;
+    color: var(--vividred);
+  }
+
   .note {
     margin-top: 1.5rem;
     font-style: italic;
@@ -375,7 +381,7 @@ columns {
 .centre-heading {
   color: var(--bg);
   /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); Text shadow */
-  text-align: center;
+  text-align: LEFT;
 }
 .centre-heading h1 {
   font-size: 1.5rem;
@@ -1568,5 +1574,23 @@ footer {
 }
 
 
-
+    .notice-frame {
+      max-width: 100%;
+      margin: 20px auto;                 /* center on page */
+      padding: 20px;
+      background: #ffffff;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .notice-title {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      /* padding-top: 1rem; */
+      color: var(--vividred);
+      text-align: center;
+      font-weight: bolder;
+    }
 
